@@ -4,7 +4,7 @@ centos7安装consul
 
 官网地址：https://www.consul.io/downloads
 
-![image-20220722154449971](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220722154449971.png)
+![image-20220722154449971](https://img2023.cnblogs.com/blog/1768648/202305/1768648-20230516171442428-1975583039.png)
 
 在线安装consul
 
@@ -12,7 +12,7 @@ centos7安装consul
 sudo yum install -y yum-utils && sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo && sudo yum -y install consul
 ```
 
-## 2、修改consul配置文件
+## 2、添加consul配置文件
 
 vi /etc/consul.d/server.json	（新建server.json配置文件）
 
@@ -35,29 +35,33 @@ vi /etc/consul.d/server.json	（新建server.json配置文件）
 }
 ```
 
-
-
 ## 3、启动consul
 
 ```shell
 systemctl start consul && systemctl enable consul
 ```
 
-![image-20221107101636110](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20221107101636110.png)
+![image-20221107101636110](https://img2023.cnblogs.com/blog/1768648/202305/1768648-20230516171442888-1785850116.png)
 
 打开网址查看：http://172.16.131.28:8500/ui/ (需要替换自己的IP)（访问不了时，关闭防火墙或者防火墙添加端口）
 
-![image-20220722155450691](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220722155450691.png)
+![image-20220722155450691](https://img2023.cnblogs.com/blog/1768648/202305/1768648-20230516171443395-2131011805.png)
 
-#### 3、服务注册与反注册
+### 注意事项：
+
+如果启动失败，则修改配置文件/usr/lib/systemd/system/consul.service，设置启动用户为root，然后重启
+
+![image-20230516162831953](https://img2023.cnblogs.com/blog/1768648/202305/1768648-20230516171443841-300158202.png)
+
+## 4、服务注册与反注册
 
 注册服务与反注册：https://www.cnblogs.com/wangguishe/p/15605006.html
 
-#### 4、与Prometheus集成
+## 5、与Prometheus集成
 
 vim /home/prometheus-2.37.0.linux-amd64/prometheus.yml
 
-![image-20220825155909051](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220825155909051.png)
+![image-20220825155909051](https://img2023.cnblogs.com/blog/1768648/202305/1768648-20230516171444208-201020210.png)
 
 ```yaml
   - job_name: "nano"
