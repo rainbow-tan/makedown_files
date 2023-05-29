@@ -145,8 +145,8 @@ groups:
         labels: # 指定要附加到警报中的标签，冲突标签将被覆盖。标签值可以被模板化。
           severity: warning      # 报警等级标签（自定义的）
         annotations: # 添加到每个警报的注释，例如警报描述或运行手册链接。注释值可以被模板化。
-          summary: {{$labels.instance}}: 服务宕机      # 概况（自定义的）
-          description: {{$labels.instance}}: 服务宕机超过了一分钟     # 描述（自定义的）
+          summary: "{{$labels.instance}}: 服务宕机"      # 概况（自定义的）
+          description: "{{$labels.instance}}: 服务宕机超过了一分钟"     # 描述（自定义的）
 
 
 #$labels   # 此变量保存警报实例的标签键/值对。用法：{{ $labels.<labelname> }}
